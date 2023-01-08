@@ -1,11 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
-    <title>WIDI Trainer</title>
-    <script src="global.js"></script>
-    <link rel="stylesheet" href="global.css" />
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Scioly WiDi Practice App</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link rel="stylesheet" href="global.css">
+	<script src="app.js" defer="defer"></script>
 </head>
 <body>
-    <p>Hello World!</p>
+	<section class="hero is-primary">
+		<div class="hero-body">
+			<p class="title">
+			Scioly WiDi Practice App
+			</p>
+			<p class="subtitle">
+			subtitle
+			</p>
+		</div>
+
+	</section>
+
+	<section class="section section--step1 is-hidden">
+		<div class="container">
+			<h1 class="title">Hello World</h1>
+			<p class="subtitle">My first website with <strong>Bulma</strong>!</p>
+			
+			<div class="box"><canvas id="exampleCanvas" width="250" height="250"></canvas></div>
+			
+			<nav class="level">
+				<div class="level-item">
+					<button class="button" data-action="view-writeit">Next</button>
+				</div>
+			</nav>
+
+		</div>
+	</section>
+
+	<section class="section section--step2 is-hidden">
+		<div class="container">
+			<h1 class="title">Step 2 - Write It</h1>
+			<p class="subtitle">Describe up on a piece of paper the items shown on the screen.</p>
+			
+			<div class="block tile-area"></div>
+
+			<nav class="level">
+				<div class="level-left">
+					<div class="level-item">
+						<button class="button" data-action="view-intro">Back</button>
+					</div>
+					<div class="level-item">
+						<button class="button" data-action="view-writeit">Regenerate</button>
+					</div>
+				</div>
+				<div class="level-right">
+					<div class="level-item">
+						<button class="button" data-action="view-doit">Next</button>
+					</div>
+				</div>
+			</nav>
+
+		</div>
+	</section>
+
+	<section class="section section--step3 is-hidden">
+		<div class="container">
+			<h1 class="title">Step 3 - Do It</h1>
+			<p class="subtitle">Select items from the drop downs based on the write-up.</p>
+
+			<div class="block tile-area"></div>
+
+			<nav class="level">
+				<div class="level-item">
+					<button class="button" data-action="view-checkit">Next</button>
+				</div>
+			</nav>
+
+		</div>
+	</section>
+
+	<section class="section section--step4 is-hidden">
+		<div class="container">
+			<h1 class="title">Step 4 - Check It</h1>
+			<p class="subtitle">Your results are as follows...</p>
+
+			<div class="block tile-area"></div>
+
+			<nav class="level">
+				<div class="level-item">
+					<button class="button" data-action="view-intro">Restart</button>
+				</div>
+			</nav>
+
+		</div>
+	</section>
+
+	<footer class="footer">
+	  <div class="content has-text-centered">
+	    <p>
+		  <!-- todo: needs to be corrected/updated -->
+	      <strong>Scioly WiDi Practice Kit</strong> by <a href="https://github.com/???">______</a>.
+	      The source code is licensed <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
+	      The website content is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+	    </p>
+	  </div>
+	</footer>
+
 </body>
 </html>
