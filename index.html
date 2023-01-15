@@ -3,19 +3,19 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Scioly WiDi Practice App</title>
+	<title>Scioly WiDi Practice Kit</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 	<link rel="stylesheet" href="global.css">
 	<script src="app.js" defer="defer"></script>
 </head>
 <body>
-	<section class="hero is-primary">
+	<section class="hero is-info">
 		<div class="hero-body">
 			<p class="title">
-			Scioly WiDi Practice App
+			 Scioly WiDi Practice Kit
 			</p>
 			<p class="subtitle">
-			subtitle
+			Master the Write It Do It Science Olympiad event through deliberate practice.
 			</p>
 		</div>
 
@@ -23,39 +23,49 @@
 
 	<section class="section section--step1 is-hidden">
 		<div class="container">
-			<h1 class="title">Hello World</h1>
-			<p class="subtitle">My first website with <strong>Bulma</strong>!</p>
-			
-			<div class="box"><canvas id="exampleCanvas" width="250" height="250"></canvas></div>
-			
-			<nav class="level">
-				<div class="level-item">
-					<button class="button" data-action="view-writeit">Next</button>
+			<h1 class="title">Introduction</h1>
+			<p class="subtitle">The Science Olympiad Write It Do It Practice Kit is a web-based tool designed to help team members prepare for the Write It Do It event. In the event, one team member (the "Writer") is given a structure made from construction materials. The writer proceeds to write instructions on how to build the structure. The other team member (the "Doer") then uses the instructions and unassembled materials to try to recreate the structure as accurately as possible. The event depends on the team members to establish common vocabulary to be able to concisely and accurate describe various items under time constraints. Each kit that is included as part of this tool simulates specific aspects of the event experience to enable deliberate practice. The kits are an effective and efficient way for teams to practice and improve their Write It Do It skills.</p>
+
+			<div class="columns">
+			  <div class="column">
+			  	<div class="box">
+				<canvas id="exampleCanvas" width="250" height="250"></canvas>
 				</div>
-			</nav>
+			  </div>
+			  <div class="column">
+				<strong>Step 1:</strong> The tool generates 3 images, each containing 4 randomly positioned paperclips. The Doer must not be allowed to see the initial set of images. The Writer is required to write a description of each image.
+			  </div>
+			  <div class="column">
+				<strong>Step 2:</strong> The tool generates 30 images, each containing 4 paperclips. The Doer must use the write-up created in Step 2 to locate and select the 3 original images.
+			  </div>
+			  <div class="column">
+				<strong>Step 3:</strong> The tool then scores the answers and displays the results which can be used by the Writer and Doer to perform a retrospective.
+				<div class="block"><br/><button class="button is-info" data-action="view-writeit">Practice w/ Paperclips</button></div>
+			  </div>
+			</div>
 
 		</div>
 	</section>
 
 	<section class="section section--step2 is-hidden">
 		<div class="container">
-			<h1 class="title">Step 2 - Write It</h1>
-			<p class="subtitle">Describe up on a piece of paper the items shown on the screen.</p>
-			
+			<h1 class="title">Paperclip Kit - Write It</h1>
+			<p class="subtitle">In this step, The Writer is presented with 3 random images of paperclips. The Doer should NOT see these images. The Writer may use the "Regenerate" button to recreate the images, if necessary. The Writer is expected to write a detailed description of each image on a separate piece of paper. This step helps the Writer practice their ability to clearly and accurately describe the paperclips, which is an important skill in the Write It Do It event.</p>
+
 			<div class="block tile-area"></div>
 
 			<nav class="level">
 				<div class="level-left">
 					<div class="level-item">
-						<button class="button" data-action="view-intro">Back</button>
+						<button class="button is-dark" data-action="view-intro">Back</button>
 					</div>
 					<div class="level-item">
-						<button class="button" data-action="view-writeit">Regenerate</button>
+						<button class="button is-warning" data-action="view-writeit">Regenerate</button>
 					</div>
 				</div>
 				<div class="level-right">
 					<div class="level-item">
-						<button class="button" data-action="view-doit">Next</button>
+						<button class="button is-info" data-action="view-doit">Next</button>
 					</div>
 				</div>
 			</nav>
@@ -65,14 +75,21 @@
 
 	<section class="section section--step3 is-hidden">
 		<div class="container">
-			<h1 class="title">Step 3 - Do It</h1>
-			<p class="subtitle">Select items from the drop downs based on the write-up.</p>
+			<h1 class="title">Paperclip Kit - Do It</h1>
+			<p class="subtitle">In this step, the Doer is presented with 30 images of paperclips, which will include the 3 original images from Step 1 as well as 27 additional images. The Doer is expected to use the descriptions provided by the Writer to locate and select the 3 original images among the 30 images presented. This step simulates the real-world scenario of the Write It Do It event, where the Doer will be required to use the descriptions provided by the writer to locate and construct the structures that use paperclips.</p>
 
 			<div class="block tile-area"></div>
 
 			<nav class="level">
-				<div class="level-item">
-					<button class="button" data-action="view-checkit">Next</button>
+				<div class="level-left">
+					<div class="level-item">
+						<button class="button is-danger" data-action="view-intro">Restart</button>
+					</div>
+				</div>
+				<div class="level-right">
+					<div class="level-item">
+						<button class="button is-info" data-action="view-checkit">Next</button>
+					</div>
 				</div>
 			</nav>
 
@@ -81,14 +98,14 @@
 
 	<section class="section section--step4 is-hidden">
 		<div class="container">
-			<h1 class="title">Step 4 - Check It</h1>
-			<p class="subtitle">Your results are as follows...</p>
+			<h1 class="title">Paperclip Kit - Check It</h1>
+			<p class="subtitle">In this step, the tool compares the answers provided by the Doer and matches them up to the original images described by the Writer. This information can be utilized to identify areas where mistakes were made and opportunities to improve. This step will help the team members to understand their strengths and weaknesses, and to identify areas to focus on in future practice sessions.</p>
 
 			<div class="block tile-area"></div>
 
 			<nav class="level">
 				<div class="level-item">
-					<button class="button" data-action="view-intro">Restart</button>
+					<button class="button is-info" data-action="view-intro">Restart</button>
 				</div>
 			</nav>
 
@@ -99,7 +116,7 @@
 	  <div class="content has-text-centered">
 	    <p>
 		  <!-- todo: needs to be corrected/updated -->
-	      <strong>Scioly WiDi Practice Kit</strong> by <a href="https://github.com/???">______</a>.
+	      <strong>Scioly WiDi Practice Kit</strong> by <a href="https://github.com/lilia26">Lilia Shmulenson</a>.
 	      The source code is licensed <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
 	      The website content is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
 	    </p>

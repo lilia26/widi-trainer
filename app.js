@@ -44,48 +44,88 @@ const app = function() {
 		}
 	}
 
-
-	const drawRegularPaperClip = function(ctx) {
+	const drawPaperClip = function(ctx, v) {
 		ctx.beginPath();
-		ctx.moveTo(100, 290);
-		ctx.arc(50, 50, 50, 0, Math.PI, true);
-		ctx.arc(45, 360, 45, Math.PI , Math.PI * 2, true);
-		ctx.arc(50, 140, 39, 0, Math.PI, true);
-		ctx.lineTo(11, 290);
+		switch(v) {
+			case 1:
+				ctx.moveTo(100, 290);
+				ctx.arc(50, 50, 50, 0, Math.PI, true);
+				ctx.arc(45, 360, 45, Math.PI , Math.PI * 2, true);
+				ctx.arc(50, 140, 39, 0, Math.PI, true);
+				ctx.lineTo(11, 290);
+				break;
+			case 2:
+				ctx.moveTo(368, 0); // 368 just an estimate of 290 + 78 (using C = 2*Pi*r).
+				ctx.arc(50, 50, 50,  Math.PI * 1.5, Math.PI, true);
+				ctx.arc(45, 360, 45, Math.PI , Math.PI * 2, true);
+				ctx.arc(50, 140, 39, 0, Math.PI, true);
+				ctx.lineTo(11, 290);
+				break;
+			case 3:
+				ctx.moveTo(100, 290);
+				ctx.arc(50, 50, 50, 0, Math.PI, true);
+				ctx.arc(45, 360, 45, Math.PI , Math.PI * 2.5, true);
+				ctx.arc(210, 365, 39, Math.PI * 2.5, Math.PI * 1.5, true);
+				ctx.lineTo(39, 326);
+				break;
+		}
 		ctx.stroke();	
 	}
 
 	const renderExampleTile = function(canvas) {
+		renderTile(canvas);
+		return;
+/*		
 		ctx = canvas.getContext("2d")
 		ctx.lineWidth = 5;
 		ctx.strokeStyle = "#333";
 		ctx.scale(.15, .15);
 
-		let x = 410;
-		let y = 410;
-		ctx.translate(x, y);
+		let coords = getQuadrantCoordinates(0);
+		ctx.translate(coords.x, coords.y);
 
-		let d = 0;
+		let d = 90;
 		ctx.rotate(d * Math.PI / 180);
 
-		drawRegularPaperClip(ctx);
+		drawPaperClip(ctx, 1);
 
 		ctx.rotate(-d * Math.PI / 180); // reverse the rotation
-		ctx.translate(-x, -y); // reverse the translation
+		ctx.translate(-coords.x, -coords.y); // reverse the translation
 
 
-		x = 410;
-		y = 1220;
-		ctx.translate(x, y);
+		coords = getQuadrantCoordinates(1);
+		ctx.translate(coords.x, coords.y);
+
+		d = 45;
+		ctx.rotate(d * Math.PI / 180);
+
+		drawPaperClip(ctx, 2);
+
+		ctx.rotate(-d * Math.PI / 180); // reverse the rotation
+		ctx.translate(-coords.x, -coords.y); // reverse the translation
+
+		coords = getQuadrantCoordinates(2);
+		ctx.translate(coords.x, coords.y);
 
 		d = 90;
 		ctx.rotate(d * Math.PI / 180);
 
-		drawRegularPaperClip(ctx);
+		drawPaperClip(ctx, 3);
 
 		ctx.rotate(-d * Math.PI / 180); // reverse the rotation
-		ctx.translate(-x, -y); // reverse the translation
+		ctx.translate(-coords.x, -coords.y); // reverse the translation
 
+		coords = getQuadrantCoordinates(3);
+		ctx.translate(coords.x, coords.y);
+
+		d = 90;
+		ctx.rotate(d * Math.PI / 180);
+
+		drawPaperClip(ctx, 1);
+
+		ctx.rotate(-d * Math.PI / 180); // reverse the rotation
+		ctx.translate(-coords.x, -coords.y); // reverse the translation
+*/
 	}
 
 	const renderTile = function(canvas, oConfig = {}) {	// Default function parameter
@@ -96,44 +136,50 @@ const app = function() {
 		ctx.scale(.15, .15);
 		
 		for(let i = 0; i < 4; i++) {
-		
 			let x = 0;
 			let y = 0;
-			switch(i) {
-				case 0:
-					x = 410;
-					y = 410;
-					break;
-				case 1:
-					x = 410;
-					y = 1220;
-					break;
-				case 2:
-					x = 1220;
-					y = 410;
-					break;
-				case 3:
-					x = 1220;
-					y = 1220;
-					break;
-			}
-			ctx.translate(x, y);
-		
-			if (oConfig[i] == undefined) {
-				oConfig[i] = randomIntFromInterval(0, 360);
-			}
-			ctx.rotate(oConfig[i] * Math.PI / 180);
+			
+			let coords = getQuadrantCoordinates(i);
+			
+			ctx.translate(coords.x, coords.y);
 
-			drawRegularPaperClip(ctx);
-			
-			ctx.rotate(oConfig[i] * -1 * Math.PI / 180); // reverse the rotation
-			ctx.translate(-x, -y); // reverse the translation
-			
+			if (oConfig[i] == undefined) {
+				oConfig[i] = { r : randomIntFromInterval(0, 360), v : randomIntFromInterval(1,3) };
+			}
+
+			ctx.rotate(oConfig[i].r * Math.PI / 180);
+
+			drawPaperClip(ctx, oConfig[i].v);
+
+			ctx.rotate(oConfig[i].r * -1 * Math.PI / 180); // reverse the rotation
+			ctx.translate(-coords.x, -coords.y); // reverse the translation
 		}
 
 		canvas.dataset.config = JSON.stringify(oConfig); // JSON Object to JSON String conversion
 	}
 
+	const getQuadrantCoordinates = function(q) {
+		const coords = {};
+		switch(q) {
+			case 0:
+				coords.x = 450;
+				coords.y = 450;
+				break;
+			case 1:
+				coords.x = 1200;
+				coords.y = 450;
+				break;
+			case 2:
+				coords.x = 450;
+				coords.y = 1200;
+				break;
+			case 3:
+				coords.x = 1200;
+				coords.y = 1200;
+				break;
+		}
+		return coords;
+	}
 
 	const hideSection = function(n, isHide) {
 		if (!Number.isInteger(n) || typeof isHide != "boolean") {
@@ -167,7 +213,7 @@ const app = function() {
 				switch(sButtonSet) {
 					case "doit":
 						oHTML.push(`<div class='block'>`);
-						oHTML.push(`<button class="button is-fullwidth">Include</button>`);
+						oHTML.push(`<button class="button is-dark is-fullwidth">Include</button>`);
 						oHTML.push(`</div>`);
 						break;
 					case "checkit":
@@ -194,11 +240,11 @@ const app = function() {
 
 		const oHTML = [];
 
-		oHTML.push(`<p class="subtitle">The writer used the following...</p>`);
+		oHTML.push(`<p class="subtitle">Original Images described by the Writer:</p>`);
 
 		oHTML.push(generateTileRows(1, "", "correct"));
 
-		oHTML.push(`<p class="subtitle">You selected the following...</p>`);
+		oHTML.push(`<p class="subtitle">Images selected by the Doer:</p>`);
 
 		oHTML.push(generateTileRows(1, "checkit", "selected"));
 
