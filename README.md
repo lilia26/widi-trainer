@@ -15,8 +15,8 @@ https://widikit.com
 I am a Science Olympiad competitor and a Coach.
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
-
+[MIT](http://opensource.org/licenses/mit-license.php)
+[CC BY NC SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 ## Support
 
